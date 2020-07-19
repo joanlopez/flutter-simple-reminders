@@ -1,5 +1,5 @@
 on: push
-name: Build and Release APK
+name: Test, Build and Release APK
 jobs:
   build:
     name: Build APK
