@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_translate/flutter_translate.dart';
 import 'package:simplereminders/screens/form/screen.dart';
 import 'package:simplereminders/screens/list/screen.dart';
 
 void main() {
-  runApp(SimpleRemindersApp());
+  LocalizationDelegate.create(
+      fallbackLocale: 'en', supportedLocales: ['en', 'es'])
+      .then((delegate) => runApp(LocalizedApp(delegate, SimpleRemindersApp())));
 }
 
 class SimpleRemindersApp extends StatelessWidget {

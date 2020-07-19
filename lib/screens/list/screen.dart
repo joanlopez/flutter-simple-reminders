@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_translate/flutter_translate.dart';
 import 'package:simplereminders/screens/form/screen.dart';
 
 class ListScreen extends StatefulWidget {
@@ -17,21 +18,21 @@ class _ListScreenState extends State<ListScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("List Screen"),
+        title: Text(translate("list.title")),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              'No reminders configured yet.',
+              translate("list.noReminders"),
             ),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _navigateToFormScreen,
-        tooltip: 'Add new reminder',
+        tooltip: translate("listTooltips.addReminder"),
         child: Icon(Icons.add),
       ),
     );

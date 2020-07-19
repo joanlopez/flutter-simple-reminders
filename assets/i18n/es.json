@@ -1,6 +1,10 @@
 {
+  "form": {
+    "title": "Añadir nuevo recordatorio"
+  },
   "list": {
-    "noReminders": "No hay recordatorios configurados todavía."
+    "noReminders": "No hay recordatorios configurados todavía.",
+    "title": "Recordatorios"
   },
   "listTooltips": {
     "addReminder": "Añadir nuevo recordatorio."
