@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_translate/flutter_translate.dart';
+import 'package:simplereminders/mixins/translator.dart';
 import 'package:simplereminders/screens/form/screen.dart';
 
 class ListScreen extends StatefulWidget {
@@ -13,7 +13,7 @@ class ListScreen extends StatefulWidget {
   _ListScreenState createState() => _ListScreenState();
 }
 
-class _ListScreenState extends State<ListScreen> {
+class _ListScreenState extends State<ListScreen> with Translator {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

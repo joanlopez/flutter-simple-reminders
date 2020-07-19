@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_translate/flutter_translate.dart';
+import 'package:simplereminders/mixins/translator.dart';
 
 class FormScreen extends StatefulWidget {
   static const String route = "form";
@@ -12,7 +12,7 @@ class FormScreen extends StatefulWidget {
   _FormScreenState createState() => _FormScreenState();
 }
 
-class _FormScreenState extends State<FormScreen> {
+class _FormScreenState extends State<FormScreen> with Translator {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,9 +22,7 @@ class _FormScreenState extends State<FormScreen> {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-
-          ],
+          children: <Widget>[],
         ),
       ),
     );
