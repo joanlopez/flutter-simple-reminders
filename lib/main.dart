@@ -2,15 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:simplereminders/screens/home/screen.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(SimpleRemindersApp());
 }
 
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+class SimpleRemindersApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Simple Reminders',
       theme: ThemeData(
         // This is the theme of your application.
         //
