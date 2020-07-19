@@ -1,0 +1,8 @@
+{
+  "list": {
+    "noReminders": "There are no reminders configured yet."
+  },
+  "listTooltips": {
+    "addReminder": "Add new reminder."
+  }
+}
