@@ -6,6 +6,8 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:simplereminders/mixins/translator.dart';
 
 class DateTimeRow extends StatefulWidget {
+  static const oneHour = Duration(hours: 1);
+
   @override
   DateTimeRowState createState() {
     return DateTimeRowState();
@@ -27,9 +29,12 @@ class DateTimeRowState extends State<DateTimeRow> with Translator {
     date = DateTime.now();
     dateFormat = DateFormat.yMMMEd(Platform.localeName);
 
-    TimeOfDay now = TimeOfDay.now();
-    time = TimeOfDay(hour: now.hour+1, minute: now.minute);
+    time = currentTimePlusOneHour();
     timeFormat = DateFormat.Hm(Platform.localeName);
+  }
+
+  TimeOfDay currentTimePlusOneHour() {
+    return TimeOfDay.now().replacing(hour: date.add(DateTimeRow.oneHour).hour);
   }
 
   @override
