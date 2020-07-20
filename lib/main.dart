@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_translate/flutter_translate.dart';
 import 'package:simplereminders/bloc/bloc.dart';
 import 'package:simplereminders/bloc/event.dart';
@@ -32,6 +33,15 @@ class SimpleRemindersApp extends StatelessWidget {
       create: (BuildContext context) { print("hello"); return AppBloc(repository)..add(AppStarted());},
       child: MaterialApp(
         title: 'Simple Reminders',
+        localizationsDelegates: [
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        supportedLocales: [
+          const Locale('en', ''), // English, no country code
+          const Locale('es', ''), // Spanish, no country code
+        ],
         theme: ThemeData(
           primarySwatch: Colors.blue,
           // This makes the visual density adapt to the platform that you run
