@@ -1,6 +1,9 @@
 {
   "form": {
-    "title": "Añadir nuevo recordatorio"
+    "date": "Date",
+    "selectDate": "Select date",
+    "time": "Time",
+    "title": "Añadir nuevo recordatorio",
   },
   "list": {
     "noReminders": "There are no reminders configured yet.",

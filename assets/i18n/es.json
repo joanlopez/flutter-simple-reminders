@@ -1,5 +1,8 @@
 {
   "form": {
+    "date": "Fecha",
+    "selectDate": "Seleccione una fecha",
+    "time": "Hora",
     "title": "Añadir nuevo recordatorio"
   },
   "list": {
