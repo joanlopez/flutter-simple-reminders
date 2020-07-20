@@ -75,7 +75,7 @@ class DateTimeRowState extends State<DateTimeRow> with Translator {
     DateTime newDate = await showDatePicker(
       context: context,
       helpText: translate("form.selectDate"),
-      firstDate: DateTime(DateTime.now().year - 5),
+      firstDate: DateTime.now(),
       lastDate: DateTime(DateTime.now().year + 5),
       initialDate: date,
     );
