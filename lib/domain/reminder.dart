@@ -5,3 +5,7 @@ class Reminder {
 
   const Reminder(this.notification);
 }
+
+abstract class Repository {
+  Future<List<Reminder>> fetchReminders();
+}

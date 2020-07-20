@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:simplereminders/domain/reminder.dart';
 
 abstract class Event extends Equatable {
   const Event();
@@ -9,4 +10,11 @@ abstract class Event extends Equatable {
 
 class AppStarted extends Event {}
 
-class RemindersLoaded extends Event {}
+class RemindersLoaded extends Event {
+  final List<Reminder> reminders;
+
+  RemindersLoaded(this.reminders);
+
+  @override
+  List<Object> get props => [reminders];
+}
