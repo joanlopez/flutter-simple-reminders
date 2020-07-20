@@ -23,13 +23,13 @@ class SimpleRemindersApp extends StatelessWidget {
     NotificationsProvider provider = NotificationsProvider();
     NotificationsRepository repository = NotificationsRepository(provider);
 
-    return BlocProvider<MainBloc>(
+    return BlocProvider<AppBloc>(
       // By default, BlocProvider will create the bloc lazily, meaning create
       // will get executed when the bloc is looked up via BlocProvider.of(context).
       // To override this behavior and force create to be run immediately,
       // lazy can be set to false.
       lazy: false,
-      create: (BuildContext context) { print("hello"); return MainBloc(repository)..add(AppStarted());},
+      create: (BuildContext context) { print("hello"); return AppBloc(repository)..add(AppStarted());},
       child: MaterialApp(
         title: 'Simple Reminders',
         theme: ThemeData(

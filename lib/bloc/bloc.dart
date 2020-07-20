@@ -3,15 +3,15 @@ import 'package:simplereminders/bloc/state.dart';
 import 'package:simplereminders/bloc/event.dart';
 import 'package:simplereminders/domain/reminder.dart';
 
-class MainBloc extends Bloc<Event, State> {
+class AppBloc extends Bloc<AppEvent, AppState> {
   final Repository repository;
 
-  MainBloc(this.repository)
+  AppBloc(this.repository)
       : assert(repository != null),
-        super(State(isLoading: true));
+        super(AppState(isLoading: true));
 
   @override
-  Stream<State> mapEventToState(Event event) async* {
+  Stream<AppState> mapEventToState(AppEvent event) async* {
     if (event is AppStarted) {
       repository.fetchReminders().then((reminders) {
         add(RemindersLoaded(reminders));

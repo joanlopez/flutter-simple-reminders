@@ -1,6 +1,10 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:simplereminders/bloc/bloc.dart';
+import 'package:simplereminders/bloc/state.dart';
+import 'package:simplereminders/domain/reminder.dart';
 import 'package:simplereminders/mixins/translator.dart';
 import 'package:simplereminders/screens/form/screen.dart';
 
@@ -21,20 +25,38 @@ class _ListScreenState extends State<ListScreen> with Translator {
         title: Text(translate("list.title")),
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              translate("list.noReminders"),
-            ),
-          ],
-        ),
-      ),
+          child: BlocBuilder<AppBloc, AppState>(builder: (context, state) {
+        if (state.reminders.isEmpty) {
+          return _buildNoReminders();
+        }
+
+        return _buildReminders(state.reminders);
+      })),
       floatingActionButton: FloatingActionButton(
         onPressed: _navigateToFormScreen,
         tooltip: translate("listTooltips.addReminder"),
         child: Icon(Icons.add),
       ),
+    );
+  }
+
+  Widget _buildNoReminders() {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        Text(
+          translate("list.noReminders"),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildReminders(List<Reminder> reminders) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: reminders
+          .map((reminder) => Text(reminder.notification.title))
+          .toList(),
     );
   }
 
