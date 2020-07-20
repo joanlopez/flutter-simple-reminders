@@ -36,6 +36,7 @@ dependencies:
   bloc: ^5.0.1
   flutter_bloc: ^5.0.1
   equatable: ^1.2.2
+  built_collection: ^4.3.2
 
   # Local notifications
   flutter_local_notifications: ^1.4.4+2
