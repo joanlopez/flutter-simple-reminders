@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "770615417670",
+    "firebase_url": "https://flutter-simple-reminders.firebaseio.com",
+    "project_id": "flutter-simple-reminders",
+    "storage_bucket": "flutter-simple-reminders.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:770615417670:android:4329ab95663cb70b8ee347",
+        "android_client_info": {
+          "package_name": "cat.joanlopez.simplereminders"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "770615417670-1b2lm728r83inbccnq9dt3g764a6255q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCHCrRNtRsKn7yVo-Idt7P2CXU24TUQLOg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "770615417670-1b2lm728r83inbccnq9dt3g764a6255q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
