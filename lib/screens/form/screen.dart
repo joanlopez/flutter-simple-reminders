@@ -7,10 +7,11 @@ import 'package:simplereminders/bloc/bloc.dart';
 import 'package:simplereminders/bloc/event.dart';
 import 'package:simplereminders/domain/reminder.dart';
 import 'package:simplereminders/mixins/translator.dart';
+import 'package:simplereminders/mixins/map.dart';
 import 'package:simplereminders/screens/form/widgets/datetime_row.dart';
 
 class FormScreen extends StatefulWidget {
-  static const String route = "form";
+  static const String routeName = "form";
 
   final FirebaseAnalytics analytics;
 
@@ -26,10 +27,15 @@ class _FormScreenState extends State<FormScreen> with Translator {
   final _formKey = GlobalKey<FormState>();
   final _dateTimeRowKey = GlobalKey<DateTimeRowState>();
 
-  TextEditingController titleTextController = TextEditingController();
+  TextEditingController titleTextController;
 
   @override
   Widget build(BuildContext context) {
+    final Map<String, dynamic> args = ModalRoute.of(context).settings.arguments;
+
+    titleTextController =
+        TextEditingController(text: args.getOrElse("title", ""));
+
     return Scaffold(
       appBar: AppBar(
         title: Text(translate("form.title")),

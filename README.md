@@ -19,3 +19,5 @@ samples, guidance on mobile development, and a full API reference.
 
 - [ ] Verify notifications does work properly on iOS.
 - [ ] Verify Crashlytics does work properly on iOS.
+- [ ] Verify Analytics does work properly on iOS.
+- [ ] Verify share intents does work properly on iOS.

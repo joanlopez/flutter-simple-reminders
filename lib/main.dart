@@ -48,16 +48,18 @@ class SimpleRemindersApp extends StatelessWidget {
       lazy: false,
       create: (BuildContext context) => AppBloc(repository)..add(AppStarted()),
       child: MaterialApp(
-        title: 'Simple Reminders',
-        navigatorObservers: [FirebaseAnalyticsObserver(analytics: analytics)],
+        title: "Simple Reminders",
+        navigatorObservers: [
+          FirebaseAnalyticsObserver(analytics: analytics)
+        ],
         localizationsDelegates: [
           GlobalMaterialLocalizations.delegate,
           GlobalWidgetsLocalizations.delegate,
           GlobalCupertinoLocalizations.delegate,
         ],
         supportedLocales: [
-          const Locale('en', ''), // English, no country code
-          const Locale('es', ''), // Spanish, no country code
+          const Locale("en", ""), // English, no country code
+          const Locale("es", ""), // Spanish, no country code
         ],
         theme: ThemeData(
           primarySwatch: Colors.blue,
@@ -66,10 +68,11 @@ class SimpleRemindersApp extends StatelessWidget {
           // closer together (more dense) than on mobile platforms.
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
-        initialRoute: ListScreen.route,
+        initialRoute: ListScreen.routeName,
         routes: {
-          ListScreen.route: (context) => ListScreen(),
-          FormScreen.route: (context) => FormScreen(analytics: analytics),
+          ListScreen.routeName: (context) => ListScreen(),
+          FormScreen.routeName: (context) =>
+              FormScreen(analytics: analytics),
         },
       ),
     );
