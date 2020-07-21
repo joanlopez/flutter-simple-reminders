@@ -30,7 +30,7 @@ class SimpleRemindersApp extends StatelessWidget {
       // To override this behavior and force create to be run immediately,
       // lazy can be set to false.
       lazy: false,
-      create: (BuildContext context) { print("hello"); return AppBloc(repository)..add(AppStarted());},
+      create: (BuildContext context) => AppBloc(repository)..add(AppStarted()),
       child: MaterialApp(
         title: 'Simple Reminders',
         localizationsDelegates: [
