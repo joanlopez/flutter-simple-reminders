@@ -1,3 +1,5 @@
+import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:firebase_analytics/observer.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,7 +14,8 @@ import 'package:simplereminders/screens/form/screen.dart';
 import 'package:simplereminders/screens/list/screen.dart';
 
 void main() {
-  // Setup Crashlytics
+  // Setup Firebase Analytics & Crashlytics
+  FirebaseAnalytics analytics = FirebaseAnalytics();
   FlutterError.onError = Crashlytics.instance.recordFlutterError;
 
   // Setup BLoC observer
@@ -20,10 +23,18 @@ void main() {
 
   LocalizationDelegate.create(
           fallbackLocale: 'en', supportedLocales: ['en', 'es'])
-      .then((delegate) => runApp(LocalizedApp(delegate, SimpleRemindersApp())));
+      .then((delegate) => runApp(LocalizedApp(
+          delegate,
+          SimpleRemindersApp(
+            analytics: analytics,
+          ))));
 }
 
 class SimpleRemindersApp extends StatelessWidget {
+  final FirebaseAnalytics analytics;
+
+  SimpleRemindersApp({this.analytics}) : assert(analytics != null);
+
   @override
   Widget build(BuildContext context) {
     NotificationsProvider provider = NotificationsProvider();
@@ -38,6 +49,7 @@ class SimpleRemindersApp extends StatelessWidget {
       create: (BuildContext context) => AppBloc(repository)..add(AppStarted()),
       child: MaterialApp(
         title: 'Simple Reminders',
+        navigatorObservers: [FirebaseAnalyticsObserver(analytics: analytics)],
         localizationsDelegates: [
           GlobalMaterialLocalizations.delegate,
           GlobalWidgetsLocalizations.delegate,
@@ -57,7 +69,7 @@ class SimpleRemindersApp extends StatelessWidget {
         initialRoute: ListScreen.route,
         routes: {
           ListScreen.route: (context) => ListScreen(),
-          FormScreen.route: (context) => FormScreen(),
+          FormScreen.route: (context) => FormScreen(analytics: analytics),
         },
       ),
     );

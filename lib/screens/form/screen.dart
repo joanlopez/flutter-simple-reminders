@@ -1,3 +1,4 @@
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
@@ -11,7 +12,11 @@ import 'package:simplereminders/screens/form/widgets/datetime_row.dart';
 class FormScreen extends StatefulWidget {
   static const String route = "form";
 
-  FormScreen({Key key}) : super(key: key);
+  final FirebaseAnalytics analytics;
+
+  FormScreen({Key key, this.analytics})
+      : assert(analytics != null),
+        super(key: key);
 
   @override
   _FormScreenState createState() => _FormScreenState();
@@ -73,6 +78,7 @@ class _FormScreenState extends State<FormScreen> with Translator {
         onPressed: () {
           if (_formKey.currentState.validate()) {
             dispatchReminderAddedEvent();
+            logReminderAddedAnalyticsEvent();
             Navigator.pop(context);
           }
         },
@@ -89,5 +95,17 @@ class _FormScreenState extends State<FormScreen> with Translator {
           scheduledAt: _dateTimeRowKey.currentState.currentDateTime(),
         )),
       );
+  }
+
+  void logReminderAddedAnalyticsEvent() {
+    widget.analytics.logEvent(
+      name: 'reminder_added',
+      parameters: <String, dynamic>{
+        'title': titleTextController.text.toString(),
+        'scheduledAt': _dateTimeRowKey.currentState
+            .currentDateTime()
+            .millisecondsSinceEpoch,
+      },
+    );
   }
 }
