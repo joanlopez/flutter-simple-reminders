@@ -14,7 +14,7 @@ class NotificationsProvider {
     _setUp();
   }
 
-  schedule(DateTime scheduledDate) async {
+  schedule(DateTime scheduleAt, String title) async {
     AndroidNotificationDetails androidNotificationDetails =
         AndroidNotificationDetails(
             "channelId", "channelName", "channelDescription",
@@ -27,9 +27,9 @@ class NotificationsProvider {
     NotificationDetails notificationDetails =
         NotificationDetails(androidNotificationDetails, iosNotificationDetails);
 
-    await _flutterLocalNotificationsPlugin.schedule(0, "Simple Reminder Title",
-        "Simple Reminder Payload", scheduledDate, notificationDetails,
-        androidAllowWhileIdle: true);
+    await _flutterLocalNotificationsPlugin.schedule(0, title,
+        "Simple Reminder Body", scheduleAt, notificationDetails,
+        androidAllowWhileIdle: true, payload: scheduleAt.toIso8601String());
   }
 
   Future<List<PendingNotificationRequest>> get() async {

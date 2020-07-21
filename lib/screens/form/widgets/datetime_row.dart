@@ -6,7 +6,9 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:simplereminders/mixins/translator.dart';
 
 class DateTimeRow extends StatefulWidget {
-  static const oneHour = Duration(hours: 1);
+  static const tenMinutes = Duration(minutes: 10);
+
+  DateTimeRow({Key key}) : super(key: key);
 
   @override
   DateTimeRowState createState() {
@@ -29,12 +31,18 @@ class DateTimeRowState extends State<DateTimeRow> with Translator {
     date = DateTime.now();
     dateFormat = DateFormat.yMMMEd(Platform.localeName);
 
-    time = currentTimePlusOneHour();
+    time = currentTimePlusTenMinutes();
     timeFormat = DateFormat.Hm(Platform.localeName);
   }
 
-  TimeOfDay currentTimePlusOneHour() {
-    return TimeOfDay.now().replacing(hour: date.add(DateTimeRow.oneHour).hour);
+  DateTime currentDateTime() {
+    return DateTime(date.year, date.month, date.day, time.hour, time.minute);
+  }
+
+  TimeOfDay currentTimePlusTenMinutes() {
+    DateTime nowPlusTenMinutes = date.add(DateTimeRow.tenMinutes);
+    return TimeOfDay(
+        hour: nowPlusTenMinutes.hour, minute: nowPlusTenMinutes.minute);
   }
 
   @override
@@ -45,6 +53,7 @@ class DateTimeRowState extends State<DateTimeRow> with Translator {
         GestureDetector(
             onTap: _pickDate,
             child: Card(
+                color: Colors.transparent,
                 child: Padding(
                     padding: EdgeInsets.symmetric(vertical: 20.0),
                     child: Column(
@@ -59,7 +68,7 @@ class DateTimeRowState extends State<DateTimeRow> with Translator {
         GestureDetector(
             onTap: _pickTime,
             child: Card(
-                color: Colors.white,
+                color: Colors.transparent,
                 shape: RoundedRectangleBorder(),
                 child: Padding(
                     padding: EdgeInsets.all(20.0),

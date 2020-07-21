@@ -1,3 +1,4 @@
+import 'package:built_collection/built_collection.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
@@ -25,13 +26,16 @@ class _ListScreenState extends State<ListScreen> with Translator {
         title: Text(translate("list.title")),
       ),
       body: Center(
-          child: BlocBuilder<AppBloc, AppState>(builder: (context, state) {
-        if (state.reminders.isEmpty) {
-          return _buildNoReminders();
-        }
+          child: BlocBuilder<AppBloc, AppState>(
+        builder: (context, state) {
+          if (state.reminders.isEmpty) {
+            return _buildNoReminders();
+          }
 
-        return _buildReminders(state.reminders);
-      })),
+          return _buildReminders(state.reminders);
+        },
+        bloc: BlocProvider.of<AppBloc>(context),
+      )),
       floatingActionButton: FloatingActionButton(
         onPressed: _navigateToFormScreen,
         tooltip: translate("listTooltips.addReminder"),
@@ -51,12 +55,10 @@ class _ListScreenState extends State<ListScreen> with Translator {
     );
   }
 
-  Widget _buildReminders(List<Reminder> reminders) {
+  Widget _buildReminders(BuiltList<Reminder> reminders) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
-      children: reminders
-          .map((reminder) => Text(reminder.notification.title))
-          .toList(),
+      children: reminders.map((reminder) => Text(reminder.toString())).toList(),
     );
   }
 

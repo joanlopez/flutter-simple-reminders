@@ -1,6 +1,9 @@
 {
   "form": {
+    "add": "Añadir",
     "date": "Fecha",
+    "emptyTitle": "No puede estar vacío",
+    "reminderTitle": "Título del recordatorio",
     "selectDate": "Seleccione una fecha",
     "time": "Hora",
     "title": "Añadir nuevo recordatorio"

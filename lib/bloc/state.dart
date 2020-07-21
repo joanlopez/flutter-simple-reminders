@@ -1,18 +1,19 @@
+import 'package:built_collection/built_collection.dart';
 import 'package:equatable/equatable.dart';
 import 'package:simplereminders/domain/reminder.dart';
 
 class AppState extends Equatable {
   final bool isLoading;
-  final List<Reminder> reminders;
+  final BuiltList<Reminder> reminders;
 
-  AppState({this.isLoading = false, this.reminders = const []})
+  AppState({this.isLoading = false, this.reminders})
       : assert(isLoading != null),
         assert(reminders != null);
 
   @override
   List<Object> get props => [isLoading, reminders];
 
-  AppState setLoaded([List<Reminder> reminders]) {
+  AppState setLoaded([BuiltList<Reminder> reminders]) {
     return _copyWith(isLoading: false, reminders: reminders ?? []);
   }
 
@@ -21,14 +22,12 @@ class AppState extends Equatable {
   }
 
   AppState addReminder(Reminder reminder) {
-    reminders.add(reminder);
-
-    return _copyWith(reminders: reminders);
+    return _copyWith(reminders: reminders.rebuild((b) => b.add(reminder)));
   }
 
   AppState _copyWith({
     bool isLoading,
-    List<Reminder> reminders,
+    BuiltList<Reminder> reminders,
   }) {
     return AppState(
       isLoading: isLoading ?? this.isLoading,
